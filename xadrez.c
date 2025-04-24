@@ -1,40 +1,55 @@
 #include <stdio.h>
+
+void moverTorre(int casastorre){
+    if (casastorre > 0){
+        printf("Direita.\n"); //movendo a torre 5 casas para a direita.
+        moverTorre(casastorre - 1);}    
+}
+void moverBispo(int casasbispo){
+    if (casasbispo > 0){
+        printf("Cima.\n"); //movendo o bispo 5 casas para cima.
+        for (int i = 1; i < 2; i++){
+            printf("Direita.\n");} //movendo o bispo 5 casas para a direita.
+        moverBispo(casasbispo - 1);}
+}
+void moverRainha(int casasrainha){
+    if (casasrainha > 0){
+        printf("Esquerda.\n"); //movendo a rainha 8 casas para a esquerda.
+        moverRainha(casasrainha - 1);}
+}
+
 int main() {
-    int torre, bispo = 1, rainha = 1, cavalo = 1;
-    //variáveis declaradas (A variável "torre" não tem um número declarado pois esse número será declarado depois).
+    int cavalo = 1;
+    //Declarando a variável do Cavalo.
     
     printf("Simulador de movimento das peças de xadrez.\n");
     printf("Torre:\n");
-    for (torre = 1; torre <= 5; torre++){
-        //número da variável "torre" declarado.
-        printf("Torre se moveu para a direita.\n");} //movendo a torre 5 casas para a direita.
+    moverTorre(5);
     printf("Torre se moveu 5 casas para a direita.\n");
     //simulando o movimento da torre.
 
     printf("\nBispo:\n");
-    while (bispo <= 5){
-        printf("Bispo se moveu para cima.\n"); //movendo o bispo 5 casas para cima.
-        printf("Bispo se moveu para a direita.\n"); //movendo o bispo 5 casas para a direita.
-        bispo++;}
-    printf("Bispo se moveu 5 casas para a diagonal direita.\n");
+    moverBispo(5);
+    printf("Bispo se moveu 5 casas para a diagonal superior direita.\n");
     //simulando o movimento do bispo.
 
     printf("\nRainha:\n");
-    do{
-        printf("Rainha se moveu para a esquerda.\n"); //movendo a rainha 8 casas para a esquerda.
-        rainha++;
-    } while (rainha <= 8);
+    moverRainha(8);
     printf("Rainha se moveu 8 casas para a esquerda.\n");
     //simulando o movimento da rainha.
     
     printf("\nCavalo:\n");
     while (cavalo <= 1){
-        for (int i = 1; i < 3; i++){
-            printf("Cavalo se moveu para baixo.\n"); //movendo o cavalo 2 casas para baixo.
+        for (int i = 1, j = 1; i < 3 || j < 2; i++, j++){
+            if (j < 2){
+                printf("Direita\n");} //movendo o cavalo 1 casa para a direita.
+            if (i >= 3)
+            break;
+            printf("Cima.\n"); //movendo o cavalo 2 casas para cima.
         }
-        printf("Cavalo se moveu para a esquerda.\n"); //movendo o cavlo 2 casas para a esquerda.
+        printf("Cavalo se moveu em 'L'.\n"); //movendo o cavlo 2 casas para a esquerda.
         cavalo++;}
-    printf("Cavalo se moveu 2 casas para baixo e 1 casa para a esquerda.\n");
+    printf("Cavalo se moveu 2 casas para cima e 1 casa para a direita.\n");
     //simulando o movimento do cavalo.
     
     return 0;
